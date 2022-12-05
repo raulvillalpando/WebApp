@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.mjs",
+    "start": "node Server.mjs",
     "test": "mocha --timeout 10000",
-    "dev": "node server.mjs"
+    "dev": "node Server.mjs"
   },
   "repository": {
     "type": "git",
