@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
     }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function loadProducts(){
 
@@ -34,8 +34,8 @@ function loadProducts(){
 }
 
 function ProductToHTML(Product) {
-    return "<div class=\"col-sm-6 col-md-4\" sstyle=\"min-height: 100px ;\">" +
-    "<div class=\"thumbnail\" style=\"margin:10px;  border:1px solid #ddd;background-color:#fff;\">" +
+    return "<div class=\"col-sm-4 col-md-3\" sstyle=\"min-height: 80px ;\">" +
+    "<div class=\"thumbnail\" style=\"margin:10px;  border:3px solid #ddd;background-color:#fff;\">" +
       "<h4 class=\"text-center\"><span class=\"label label-info\">" + Product.Categoría + "</span></h4>" +
       "<img src=\"" + Product.Imagen + "\" class=\"img-responsive\">" +
       "<div class=\"caption\">" +

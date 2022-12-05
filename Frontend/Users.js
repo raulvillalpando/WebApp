@@ -4,62 +4,61 @@ window.addEventListener("load", function() {
   }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function registerFuction() {
-let email = document.getElementById("CorreoRegister").value;
-let pass = document.getElementById("PasswordRegister").value;
-let name = document.getElementById("NombreRegister").value;
-let lastName = document.getElementById("ApellidoRegister").value;
-let passConfirm = document.getElementById("PasswordConfirmRegister").value;
-let number = document.getElementById("NumberRegister").value;
-let sex;
+  let email = document.getElementById("CorreoRegister").value;
+  let pass = document.getElementById("PasswordRegister").value;
+  let name = document.getElementById("NombreRegister").value;
+  let lastName = document.getElementById("ApellidoRegister").value;
+  let passConfirm = document.getElementById("PasswordConfirmRegister").value;
+  let number = document.getElementById("NumberRegister").value;
+  let sex;
 
-if (pass != passConfirm) {
-  alert("Conraseñas no coinciden");
-  return;
-}
-document.getElementsByName("Test").forEach(element => {
-  if (element.checked) {
-    sex = element.value;
+  if (pass != passConfirm) {
+    alert("Conraseñas no coinciden");
+    return;
   }
-});
+  document.getElementsByName("Test").forEach(element => {
+    if (element.checked) {
+      sex = element.value;
+    }
+  });
 
-let info = {
-  nombre: name,
-  apellidos: lastName,
-  correo: email,
-  contraseña: pass,
-  numero: number,
-  sexo: sex
-}
-
-let xhr = new XMLHttpRequest();
-
-xhr.open('POST', URL + "/api/users");
-
-xhr.setRequestHeader('Content-Type', 'application/json');
-// xhr.setRequestHeader('x-auth-user', localStorage.token);
-
-xhr.send([JSON.stringify(info)]);
-
-xhr.onload = function () {
-  if (xhr.status != 201) { 
-      
-    alert(xhr.response);
-      
-  } else {
-    document.getElementById("FormRegister").reset();
-    $('#Register').modal('hide');
-    console.log("Register fuction termino");
-    alert("Usuario agregado!!");
-      
+  let info = {
+    nombre: name,
+    apellidos: lastName,
+    correo: email,
+    contraseña: pass,
+    numero: number,
+    sexo: sex
   }
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('POST', URL + "/api/users");
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.setRequestHeader('x-auth-user', localStorage.token);
+
+  xhr.send([JSON.stringify(info)]);
+
+  xhr.onload = function () {
+    if (xhr.status != 201) { 
+        
+      alert(xhr.response);
+        
+    } else {
+      document.getElementById("FormRegister").reset();
+      $('#Register').modal('hide');
+      console.log("Register fuction termino");
+      alert("Usuario agregado!!");
+        
+    }
 };
 
 }
-
 
 function loginFuction() {
   let email = document.getElementById("emailLogin").value;
@@ -93,8 +92,6 @@ function loginFuction() {
   };
 }
 
-
-
 function editFuction(Modal) {
 let id = Modal.getAttribute("saveID");
 
@@ -121,28 +118,25 @@ xhr.onload = function () {
 
 function deleteUser(){
 
-console.log("Entre");
+  let StrT = "" + localStorage.token
 
-let StrT = "" + localStorage.token
-
-let xhr = new XMLHttpRequest();
-xhr.open("DELETE", URL + "/api/users/" + StrT);
-xhr.setRequestHeader("x-user-token", localStorage.Token);
-xhr.send();
-alert("Usuario Eliminado!");
-
-xhr.onload = function(){
-    if(xhr.status != 200 ){
-       alert(xhr.response);
-       console.log("Pito");
-    }else{
-      console.log("Cupas")
+  let xhr = new XMLHttpRequest();
+  xhr.open("DELETE", URL + "/api/users/" + StrT);
+  xhr.setRequestHeader("x-user-token", localStorage.Token);
+  xhr.send();
+  
+  xhr.onload = function() {
+      if(xhr.status != 200 ){
+        alert(xhr.response);
+      }else{
         //delete localStorage.Token;
         localStorage.clear();
         alert("Usuario eliminado!");
-    }
-}
-}
+        window.location.href = "Cuenta.html";
+      }
+
+  }
+};
 
 function loadUser(){
   let xhr = new XMLHttpRequest();

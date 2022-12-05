@@ -374,13 +374,25 @@
           
     </div> -->
 
-    <div class="container" >
-      
-      <div class="row" >
+    <!--Fake search bar-->
+    <form action="javascript:filter(1)">
+      <div class="form-row">
+          <div class="col-6">
+          <input type="text" id="searchBar" class="form-control m-2" placeholder="nombre de productos">
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary m-2">Buscar</button>
+        </div>
+      </div>
+      <label style="font-size: small; color: darkgrey;" class="m-2">Buscar usuario</label>
+      <br>
+    </form>
 
+    <div class="container">      
+      <div class="row">
         <div class="col-md-12 row" id="listaProductos">
 
-          <!-- <div class="col-sm-6 col-md-4" sstyle="min-height: 100px ;">
+          <!-- <div class="6l-sm-6 col-md-4" sstyle="min-height: 100px ;">
             <div class="thumbnail" style="margin:10px;  border:1px solid #ddd;background-color:#fff;">
               <h4 class="text-center"><span class="label label-info">Herramientas</span></h4>
               <img src="https://pinturassayjo.com/wp-content/uploads/2021/02/PhotoRoom_20210616_172236-300x300.jpeg" class="img-responsive">
