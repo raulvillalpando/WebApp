@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
     }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function loadProducts(){
 
@@ -35,7 +35,7 @@ function loadProducts(){
 
 function ProductToHTML(Product) {
     return "<div class=\"col-sm-4 col-md-3\" sstyle=\"min-height: 80px ;\">" +
-    "<div class=\"thumbnail\" style=\"margin:10px;  border:3px solid #ddd;background-color:#fff;\">" +
+    "<div class=\"thumbnail\" style=\"margin:10px;  border:10px solid #ddd;background-color:#fff; width:330px;\">" +
       "<h4 class=\"text-center\"><span class=\"label label-info\">" + Product.Categoría + "</span></h4>" +
       "<img src=\"" + Product.Imagen + "\" class=\"img-responsive\">" +
       "<div class=\"caption\">" +
@@ -46,12 +46,7 @@ function ProductToHTML(Product) {
           "<div class=\"col-md-7 col-xs-6 price\">" +
           "</div>" +
         "</div>" +
-        "<h4>Presentaciones</h4>" +
-        "<select name=\"presentación\" id=\"pres\">" +
-          "<option value=\"1\">Delgado</option>" +
-          "<option value=\"2\">Mediano</option>" +
-          "<option value=\"3\">Grueso</option>" +
-        "</select>" +
+        "<h4>Presentacion: " + Product.Presentación  + "</h4>" +
        "<p></p>" +
         "<div class=\"row\">" +
           "<div class=\"col-md-6\">" +

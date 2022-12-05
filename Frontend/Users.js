@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
   }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function registerFuction() {
   let email = document.getElementById("CorreoRegister").value;
@@ -85,8 +85,67 @@ function loginFuction() {
         localStorage.token = xhr.response;
         document.getElementById("FormLogin").reset();
         $('#LogIn').modal('hide');
-        console.log("Login Fuction terminada");
         alert("Sesión iniciada");
+        window.location.href = "Cuenta.html";
+          
+      }
+  };
+}
+
+function loadModalEdit(Boton) {
+  let id = Boton.getAttribute("saveID");
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('GET', "http://localhost:3000/api/users/" + id);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.send();
+  
+  xhr.onload = function () {
+      if (xhr.status != 200) { 
+      
+          alert("Error con el get");
+          
+      } else {
+          
+          let user = JSON.parse(xhr.response);
+          let Str = "<form id=\"formEdit\"action=\"javascript: editFuction()\">" +
+                
+          "<input type=\"text\" name=\"\" id=\"NombreRegister\" class=\"form-control\" placeholder=\"Nombre\" aria-describedby=\"helpId\""+
+          "maxlength=\"10\" required> <br>" +
+
+          "<input type=\"text\" name=\"\" id=\"ApellidoRegister\" class=\"form-control\" placeholder=\"Apellido\" aria-describedby=\"helpId\" " +
+          "maxlength=\"10\" required> <br>" +
+
+          "<input type=\"password\" name=\"\" id=\"PasswordRegister\" class=\"form-control\" placeholder=\"Contraseña\" aria-describedby=\"helpId\" " +
+          "required> <br> "+
+          "<!-- pattern=\"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\" -->" +
+          
+          "<div class=\"input-group\">" +
+
+            "<input type=\"number\" name=\"\" id=\"FechaRegister\" class=\"form-control\" placeholder=\"\" aria-describedby=\"helpId\" " +
+            "max=\"1979-12-31\" min=\"2000-01-02\" required>" +
+            "<div class=\"input-group-prepend\">" +
+              "<span class=\"input-group-text\"><i class=\"fas fa-calendar\"></i></span>" +
+            "</div>" +
+            
+          "</div> <br>" +
+
+          "<div class=\"form-check\" required>" +
+
+            "<label class=\"form-check-label\">" +
+              "<input type=\"radio\" class=\"form-check-input\" name=\"Test\" id=\"R1\" value=\"M\" checked> Mujer" +
+              "<br>" +
+              "<input type=\"radio\" class=\"form-check-input\" name=\"Test\" id=\"R2\" value=\"H\"> Hombre" +
+            "</label>" +
+
+          "</div> <br>" +
+          
+
+        "</form>";
+          
+          document.getElementById("EditModal").innerHTML = Str;
           
       }
   };
@@ -204,7 +263,7 @@ function UserToHTML(User) {
               "</tbody>" +
             "</table>" +
             "<div>" +
-              "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
+              "<button onclick=\"loadModalEdit(this)\" saveID=\" "+ User.uID +" \" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
               "Editar perfil" +
               "</button>" +
               "<button onclick=\"loadModalInfo(this)\" saveID=\" "+ User.uID +" \"  type=\"button\" class=\"btn btn-primary m-2\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
