@@ -1,5 +1,24 @@
 {
+  "name": "WebApp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "mocha --timeout 10000",
+    "dev": "node server.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/web-tiesos/WebApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/web-tiesos/WebApp/issues"
+  },
+  "homepage": "https://github.com/web-tiesos/WebApp#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "chalk": "^5.1.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
@@ -9,3 +28,4 @@
     "url": "^0.11.0"
   }
 }
+
