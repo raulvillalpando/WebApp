@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Pedidos</title>
+    
+    <link rel="shortcut icon" href="#">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  </head>
+  <body>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+    <nav class="navbar navbar-expand-sm" style="background-color: white;">
+
+      <a class="navbar-brand" href="/Frontend/Home.html"> <img src="https://pinturassayjo.com/wp-content/uploads/2021/02/cropped-SAYJO-LOGO-16-200x115.jpg" alt="Cherry" width="100" height="50"> </a>
+      
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/Frontend/Home.html" style="color: red;"> Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Frontend/Productos.html" style="color: red"> Productos </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Frontend/Sucursales.html" style="color: red;"> Sucursales </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Frontend/Cuenta.html" style="color: red;"> Cuenta </a>
+        </li>
+
+      </ul>
+      
+      <ul class="navbar-nav mr-right mt-2 mt-lg-0">
+
+        <li class="nav-item active">
+          <!-- Button trigger modal Register -->
+          <button type="button" class="btn btn-small" style="background-color: white;" data-toggle="modal" data-target="#Register">
+            <i class="fas fa-user" style="color: red;"> Crear cuenta</i> 
+          </button>
+        </li>
+
+        <li class="nav-item active">
+          <!-- Button trigger modal Register -->
+          <button type="button" class="btn btn-small" style="background-color: white;" data-toggle="modal" data-target="#LogIn">
+            <i class="fas fa-angle-double-right" style="color: red;"> Iniciar sesion</i> 
+          </button>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/Frontend/Carrito.html" style="color: red;"> <i class="fas fa-shopping-cart" style="color: red;"> Carrito</i> </a>
+        </li>
+
+        <!-- Modal Log In -->
+        <div class="modal fade" id="LogIn" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+              <div class="modal-header">
+
+                <h5 class="modal-title">Iniciar Sesion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+              </div>
+                
+              <div class="modal-body">
+
+                <form id="FormLogin" action="javascript: loginFuction()">
+
+                  <div class="form-group">
+
+                    <label for="email"> Email: </label>
+                    <div class="input-group">
+
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="email" class="form-control" id="emailLogin" placeholder="Ingresa tu correo" required>
+
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="password"> Contraseña: </label>
+                    <div class="input-group">
+
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" ><i class="fa fa-lock"></i></span>
+                      </div>
+                      <input type="password" class="form-control" id="passwordLogin" placeholder="Ingresa tu contraseña" required>
+
+                    </div>
+
+                  </div>
+
+                  <div class="form-check">
+
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                      Recordar usuario
+                    </label>
+
+                  </div>
+
+                  <br>
+
+                  <button type="submit" class="btn btn-primary">Iniciar sesion </button>
+                  <br><br>
+                  ¿No tienes cuenta?<a href="#RegisterID" data-toggle="modal" data-target="#RegisterID"> Registrate aqui </a>
+
+
+                </form>
+                
+              </div>
+
+              <div class="modal-footer">
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        
+        <!-- Modal Register-->
+        <div class="modal fade" id="Register" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        
+          <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title">Registrar Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+
+                <form id="FormRegister" action="javascript: registerFuction()">
+                  
+                  <input type="text" name="" id="NombreRegister" class="form-control" placeholder="Nombre" aria-describedby="helpId" 
+                  maxlength="10" required> <br>
+
+                  <input type="text" name="" id="ApellidoRegister" class="form-control" placeholder="Apellido" aria-describedby="helpId" 
+                  maxlength="10" required> <br>
+
+                  <input type="email" name="" id="CorreoRegister" class="form-control" placeholder="Correo" aria-describedby="helpId" required> <br>
+
+                  <input type="password" name="" id="PasswordRegister" class="form-control" placeholder="Contraseña" aria-describedby="helpId" required> <br> 
+                  <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
+                  <input type="password" name="" id="PasswordConfirmRegister" class="form-control" placeholder="Confirmar contraseña" aria-describedby="helpId" required> <br>
+                  
+                  <input type="text" name="" id="NumberRegister" class="form-control" placeholder="Numero de telefono" aria-describedby="helpId" required> <br>
+
+                  <div class="input-group">
+    
+                    <input type="number" name="" id="FechaRegister" class="form-control" placeholder="" aria-describedby="helpId" required>
+
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                    </div>
+                    
+                  </div> <br>
+
+                  <div class="form-check" required>
+
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="Test" id="R1" value="M" checked> Mujer                          
+                      <br>
+                      <input type="radio" class="form-check-input" name="Test" id="R2" value="H"> Hombre
+                    </label>
+
+                  </div> <br>
+                  
+                  <input name="" id="" class="btn btn-success" type="submit" value="Registrarse" >
+                  <input name="" id="" class="btn btn-secondary" type="button" value="Cerrar" data-dismiss="modal">
+
+                </form>
+              
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </ul>
+
+    </nav>
+
+    <div class="container" >
+      <div class="row">
+          <div class="col-sm-12 col-md-12 col-md-offset-1">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Producto</th>
+                          <th>Cantidad</th>
+                          <th class="text-center">Precio</th>
+                          <th class="text-center">Total</th>
+                          <th> </th>
+                      </tr>
+                  </thead>
+
+                  <tbody>
+                      <tr>
+                          <td class="col-sm-8 col-md-6">
+                          <div class="media">
+                              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px; margin-right: 10px;"> </a>
+                              <div class="media-body" style="left: 10px;">
+                                  <h4 class="media-heading"><a href="#">Producto 1</a></h4>
+                                  <h6 class="media-heading"> Categoria <a href="#">Pinturas</a></h6>
+                                  <h6 class="media-heading"> Contenido: 2L</h6>
+                                  <span>Status: </span><span class="text-success"><strong>Enviado</strong></span>
+                              </div>
+                          </div></td>
+                          <td class="col-sm-1 col-md-1" style="text-align: center">
+                            <strong>4</strong>
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                          <td class="col-sm-1 col-md-1">
+                          
+                      </tr>
+                      
+                      <tr>
+                          <td class="col-md-6">
+                          <div class="media">
+                              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px; margin-right: 10px;"> </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading"><a href="#">Producto 2</a></h4>
+                                  <h6 class="media-heading"> Categoria <a href="#">Esmaltes</a></h6>
+                                  <h6 class="media-heading"> Contenido: 1L</h6>
+                                  <span>Status: </span><span class="text-warning"><strong>Pedido</strong></span>
+                              </div>
+                          </div></td>
+                          <td class="col-md-1" style="text-align: center">
+                            <strong>4</strong>
+                          </td>
+                          <td class="col-md-1 text-center"><strong>$4.99</strong></td>
+                          <td class="col-md-1 text-center"><strong>$9.98</strong></td>
+                          <td class="col-md-1">
+                          
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td><h5>Subtotal</h5></td>
+                          <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td><h5>Envio</h5></td>
+                          <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td><h3>Total</h3></td>
+                          <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                      </tr>
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>
+                          <button type="button" class="btn btn-secondary">
+                              <span class="glyphicon glyphicon-shopping-cart"></span> Continuar comprando
+                          </button></td>
+                          <td>
+                          <button type="button" class="btn btn-success">
+                              Checkout <span class="glyphicon glyphicon-play"></span>
+                          </button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+
+
+  </body>
+</html>
