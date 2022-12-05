@@ -9,7 +9,7 @@ const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function loadProducts(){
 
-  console.log("Entre");
+  console.log(URL);
   let xhr = new XMLHttpRequest();
 
   xhr.open('GET', URL + "/api/products");
