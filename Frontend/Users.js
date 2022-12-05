@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
   }
 })
 
-const URL = "http://localhost:3000";
-// const URL = "https://anxious-shoe-toad.cyclic.app";
+// const URL = "http://localhost:3000";
+const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function registerFuction() {
   let email = document.getElementById("CorreoRegister").value;
@@ -272,15 +272,6 @@ function UserToHTML(User) {
             "<table class=\"table table-user-information\">" +
               "<tbody>" +
 
-                "<tr>" +
-                  "<td>Date of Birth</td>" +
-                  "<td>01/24/1988</td>" +
-                "</tr>" +
-             
-                "</tr>" +
-                  "<td>Home Address</td>" +
-                  "<td>Kathmandu,Nepal</td>" +
-                "</tr>" +
                 
                 "<tr>" +
                   "<td>Email</td>" +
@@ -298,9 +289,7 @@ function UserToHTML(User) {
               "<button onclick=\"loadModalEdit()\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ModalEdit\">" +
               "Editar perfil" +
               "</button>" +
-              "<button onclick=\"loadModalInfo(this)\" saveID=\" "+ User.uID +" \"  type=\"button\" class=\"btn btn-primary m-2\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
-              "Pedidos" +
-              "</button>" +
+              
               "<button onclick=\"deleteUser()\" saveID=\" "+ User.uID +" \"  type=\"button\" class=\"btn btn-danger m-2\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
               "Borrar perfil" +
               "</button>" +

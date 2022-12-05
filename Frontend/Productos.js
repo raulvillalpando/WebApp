@@ -56,7 +56,7 @@ function addToCart(Id) {
         
     } else {
 
-      console.log("Agregado al carrito")
+      alert("Agregado al carrito")
           
     }
   }
