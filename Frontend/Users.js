@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
   }
 })
 
-const URL = "http://localhost:3000";
-// const URL = "https://anxious-shoe-toad.cyclic.app";
+// const URL = "http://localhost:3000";
+const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function registerFuction() {
   let email = document.getElementById("CorreoRegister").value;

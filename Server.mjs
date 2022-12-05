@@ -266,7 +266,10 @@ App.post("/api/login", (req, res) =>{
 });
 
 //ACTUALIZAR PERFIL
-
+App.put("/api/edit", (req, res) =>{
+    
+    
+});
 
 
 //CARRITO
@@ -312,57 +315,7 @@ App.get("/api/products",(req, res)=>{
 
 });
 
-App.get('/api/users', (req, res) => {
 
-    let FileReadCB = function (error, data) {
-        if (error) {
-            console.log("Error en la lectura")
-        }
-        console.log(chalk.blue("Callback del FileRead"));
-
-        let TempArr = JSON.parse(data);
-        let Nombre = req.query.nombre;
-        let Sexo = req.query.sexo;
-        let Start = req.query.start;
-        let End = req.query.end;
-        let Flag = false;
-
-        if (Nombre != undefined) {
-            TempArr = TempArr.filter(Usuario => Usuario.Nombre.toUpperCase().includes(Nombre.toUpperCase()) || Usuario.Apellidos.toUpperCase().includes(Nombre.toUpperCase()));
-            Flag = true;
-        }
-        if (Sexo != undefined) {
-            TempArr= TempArr.filter(Usuario => Usuario.Sexo == Sexo);
-            Flag = true;
-        }
-        if (Start != undefined) {
-            TempArr= TempArr.filter(Usuario => Usuario.Fecha >= Start);
-            Flag = true;
-        }
-        if (End != undefined) {
-            TempArr = TempArr.filter(Usuario => Usuario.Fecha <= End);
-            Flag = true;
-        }
-
-        if (Flag) {
-            res.send(data);
-            console.log(chalk.green("Users Get terminado"));
-            return;
-        }
-        else{
-            res.send(TempArr);
-            console.log(chalk.green("Users Get terminado"));
-            return;
-        }
-        
-    }
-    fs.readFile('../Database/Users.json', 'utf-8', FileReadCB);
-
-
-
-    
-    
-});
 
 
 
