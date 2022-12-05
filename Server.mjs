@@ -54,7 +54,8 @@ let userSchema = mongoose.Schema({
         enum: ['M', 'H']
     },
     imagen: String,
-    token: String
+    token: String,
+    carrito: Array
 });
 
 let Users = mongoose.model('users', userSchema);
@@ -84,6 +85,30 @@ product.save().then((doc) => console.log(chalk.green("Producto agregadp: " + doc
 
 App.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"./Frontend/Home.html"));
+});
+
+//OBETENER USUARIO CON TOKEN
+App.get("/api/usersEdit/:token",(req,res)=>{
+
+    let token = req.params.token;
+
+    Users.findOne({token: {$eq:token} }, function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+        else{
+            if (docs == null) {
+                res.status(400);
+                res.send()
+                return;
+            }
+            else{
+                res.status(200);
+                res.send(docs)
+                return;
+            }
+        }
+    });
 });
 
 // REGISTRO Y VALIDACION DE DATOS
@@ -193,7 +218,7 @@ App.delete("/api/users/:token", (req, res)=>{
                 return;
             }
         }
-        });
+    });
 })
 
 // LOGIN / LOGOUT CON TOKEN
@@ -266,41 +291,110 @@ App.post("/api/login", (req, res) =>{
 });
 
 //ACTUALIZAR PERFIL
-App.put("/api/edit", (req, res) =>{
-    
-    
-});
+App.put("/api/edit/:token", (req, res) =>{
 
+    let token = req.params.token;
+    let nombre = req.body.nombre;
+    let apellido = req.body.apellido;
+    let contraseña = req.body.contraseña;
+    let sexo = req.body.sexo;
+    let numero = req.body.numero;
 
-//CARRITO
-App.post("/api/cart:token", (req, res) =>{
-    let Token = req.params.token;
-
-    Users.findOne({token: {$eq: Token}}, function (err, docs) {
-        if (err){ console.log(err) }
-        else{
-
-            if (docs == null) {
-                res.status(400);
-                res.send("No token");
-                console.log(chalk.green("Users Get Token terminado"));
-                return;
-            }
-
-            res.status(200);
-            res.send(JSON.stringify(docs));
-            console.log(chalk.green("Users Get Token terminado"));
+    console.log(nombre);
+    Users.findOneAndUpdate({token: {$eq: token} }, 
+        {
+            nombre: nombre,
+            apellido: apellido,
+            contraseña: contraseña,
+            sexo: sexo,
+            numero: numero
+        }, 
+        null, 
+        function (err, docs) {
+        if (err){
+            console.log(err)
+            res.status(400);
+            res.send();
             return;
-
+        }
+        else{
+            console.log("Original Doc : ",docs);
+            res.status(200)
+            res.send()
+            return;
         }
     });
     
 });
 
+//CARRITO
+App.put("/api/cart/:token", (req, res) =>{
 
+    let token = req.params.token;
+    let idProducto = req.body.idProducto;
+    console.log("id:" + idProducto);
+
+    Users.findOneAndUpdate({token: {$eq: token} }, 
+        {
+            $push: {carrito: idProducto} 
+        }, 
+        null, 
+        function (err, docs) {
+        if (err){
+            console.log(err)
+            res.status(400);
+            res.send();
+            return;
+        }
+        else{
+            console.log("Original Doc : ",docs);
+            res.status(200)
+            res.send()
+            return;
+        }
+    });
+    
+});
+
+App.get("/api/cart/:token", (req, res) =>{
+
+    let token = req.params.token;
+    let idProducto = req.body.idProducto;
+    console.log("id:" + idProducto);
+
+    Users.findOne({token: {$eq: token} }, 
+        function (err, docs1) {
+        if (err){
+            console.log(err)
+            res.status(400);
+            res.send();
+            return;
+        }
+        else{
+            console.log("car:" + docs1.carrito);
+            Product.find({Id: {$regex: 1} }, 
+                function (err, docs2) {
+                if (err){
+                    console.log(err)
+                    res.status(400);
+                    res.send();
+                    return;
+                }
+                else{
+                    res.status(200);
+                    res.send(docs2);
+                    return;
+                }
+            });
+        }
+    });
+    
+});
+
+//OBTENER TODOS LOS PRODUCTOS
 App.get("/api/products",(req, res)=>{
 
-    Product	.find({}, function (err, docs) {
+    Product.find({}, function (err, docs) {
             if (err){
                 console.log(err);
                 res.status(400);
@@ -315,6 +409,24 @@ App.get("/api/products",(req, res)=>{
 
 });
 
+App.get("/api/products/:search",(req, res)=>{
+
+    let busqueda = req.params.search;
+
+    Product.find({Categoría: {$regex: busqueda}}, function (err, docs) {
+            if (err){
+                console.log(err);
+                res.status(400);
+            }
+            else{
+                res.status(200)
+                res.send(docs);
+                console.log(chalk.green(busqueda));
+                return;
+            }
+        })
+
+});
 
 
 

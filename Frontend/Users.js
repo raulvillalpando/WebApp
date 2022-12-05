@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
   }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function registerFuction() {
   let email = document.getElementById("CorreoRegister").value;
@@ -92,11 +92,13 @@ function loginFuction() {
   };
 }
 
-function loadModalEdit(Boton) {
-  let id = Boton.getAttribute("saveID");
+function loadModalEdit() {
+  
+  let StrT = "" + localStorage.token
+
   let xhr = new XMLHttpRequest();
 
-  xhr.open('GET', "http://localhost:3000/api/users/" + id);
+  xhr.open('GET', "http://localhost:3000/api/usersEdit/" + StrT);
 
   xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -109,10 +111,9 @@ function loadModalEdit(Boton) {
           
       } else {
           
-          let user = JSON.parse(xhr.response);
           let Str = "<form id=\"formEdit\"action=\"javascript: editFuction()\">" +
                 
-          "<input type=\"text\" name=\"\" id=\"NombreRegister\" class=\"form-control\" placeholder=\"Nombre\" aria-describedby=\"helpId\""+
+          "<input type=\"text\" name=\"NombreRegister\" id=\"\" class=\"form-control\" placeholder=\"Nombre\" aria-describedby=\"helpId\""+
           "maxlength=\"10\" required> <br>" +
 
           "<input type=\"text\" name=\"\" id=\"ApellidoRegister\" class=\"form-control\" placeholder=\"Apellido\" aria-describedby=\"helpId\" " +
@@ -121,14 +122,14 @@ function loadModalEdit(Boton) {
           "<input type=\"password\" name=\"\" id=\"PasswordRegister\" class=\"form-control\" placeholder=\"Contraseña\" aria-describedby=\"helpId\" " +
           "required> <br> "+
           "<!-- pattern=\"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\" -->" +
-          
-          "<div class=\"input-group\">" +
 
-            "<input type=\"number\" name=\"\" id=\"FechaRegister\" class=\"form-control\" placeholder=\"\" aria-describedby=\"helpId\" " +
-            "max=\"1979-12-31\" min=\"2000-01-02\" required>" +
-            "<div class=\"input-group-prepend\">" +
-              "<span class=\"input-group-text\"><i class=\"fas fa-calendar\"></i></span>" +
-            "</div>" +
+          "<input type=\"password\" name=\"\" id=\"PasswordConfirmRegister\" class=\"form-control\" placeholder=\"Confirmar contraseña\" aria-describedby=\"helpId\" " +
+          "required> <br> "+
+          "<!-- pattern=\"(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}\" -->" +
+          
+          "<input type=\"text\" name=\"\" id=\"NumberRegister\" class=\"form-control\" placeholder=\"Numero\" aria-describedby=\"helpId\" " +
+          "maxlength=\"10\" required> <br>" +
+          
             
           "</div> <br>" +
 
@@ -151,27 +152,55 @@ function loadModalEdit(Boton) {
   };
 }
 
-function editFuction(Modal) {
-let id = Modal.getAttribute("saveID");
+function editFuction() {
+  let StrT = "" + localStorage.token
+  let pass = document.getElementById("PasswordRegister").value;
+  let name = document.getElementById("NombreRegister").value;
+  let lastName = document.getElementById("ApellidoRegister").value;
+  let number = document.getElementById("NumberRegister").value;
+  let passConfirm = document.getElementById("PasswordConfirmRegister").value;
+  let sex;
 
-let xhr = new XMLHttpRequest();
+  
 
-xhr.open('PUT', URL + "/api/users/" + id);
-
-xhr.setRequestHeader('Content-Type', 'application/json');
-
-xhr.send();
-
-xhr.onload = function () {
-    if (xhr.status != 200) { 
-    
-        alert("Error con al editar");
-        
-    } else {
-        alert("Usuario Actualizado correctamente");
-        $('#ModalDelete').modal('hide');
+  if (pass != passConfirm) {
+    alert("Conraseñas no coinciden");
+    return;
+  }
+  document.getElementsByName("Test").forEach(element => {
+    if (element.checked) {
+      sex = element.value;
     }
-};
+  });
+
+  console.log("N: " + sex);
+
+  let info = {
+    "nombre": name,
+    "apellido": lastName,
+    "contraseña": pass,
+    "sexo": sex,
+    "numero": number
+  }
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('PUT', URL + "/api/edit/" + StrT);
+
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.send([JSON.stringify(info)]);
+
+  xhr.onload = function () {
+      if (xhr.status != 200) { 
+      
+          alert("Error con al editar");
+          
+      } else {
+          alert("Usuario Actualizado correctamente");
+          $('#ModalEdit').modal('hide');
+      }
+  };
 
 }
 
@@ -196,6 +225,9 @@ function deleteUser(){
 
   }
 };
+
+
+
 
 function loadUser(){
   let xhr = new XMLHttpRequest();
@@ -263,7 +295,7 @@ function UserToHTML(User) {
               "</tbody>" +
             "</table>" +
             "<div>" +
-              "<button onclick=\"loadModalEdit(this)\" saveID=\" "+ User.uID +" \" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
+              "<button onclick=\"loadModalEdit()\" type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#ModalEdit\">" +
               "Editar perfil" +
               "</button>" +
               "<button onclick=\"loadModalInfo(this)\" saveID=\" "+ User.uID +" \"  type=\"button\" class=\"btn btn-primary m-2\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +

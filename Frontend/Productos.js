@@ -4,8 +4,8 @@ window.addEventListener("load", function() {
     }
 })
 
-// const URL = "http://localhost:3000";
-const URL = "https://anxious-shoe-toad.cyclic.app";
+const URL = "http://localhost:3000";
+// const URL = "https://anxious-shoe-toad.cyclic.app";
 
 function loadProducts(){
 
@@ -24,13 +24,42 @@ function loadProducts(){
         
     } else {
 
+      console.log(xhr.response);
       ProductListToHTML(JSON.parse(xhr.response));
       console.log(JSON.parse(xhr.response))
           
     }
     
+  }
+
 }
 
+function addToCart(Id) {
+  let StrT = "" + localStorage.token;
+  let xhr = new XMLHttpRequest();
+  console.log(Id);
+
+  xhr.open('PUT', URL + "/api/cart/" + StrT);
+  xhr.setRequestHeader('Content-Type','application/json');
+
+  let info = {
+    idProducto: Id
+  }
+
+  xhr.send([JSON.stringify(info)]);
+
+  xhr.onload = function () {
+    if (xhr.status != 200) { 
+      
+      alert(xhr.status);
+      console.log("Error")
+        
+    } else {
+
+      console.log("Agregado al carrito")
+          
+    }
+  }
 }
 
 function ProductToHTML(Product) {
@@ -50,7 +79,9 @@ function ProductToHTML(Product) {
        "<p></p>" +
         "<div class=\"row\">" +
           "<div class=\"col-md-6\">" +
-            "<a href=\"#\" class=\"btn btn-success btn-product\"><span class=\"glyphicon glyphicon-shopping-cart\"></span>Añadir al carro</a>" +
+            "<button onclick=\"addToCart("+Product.Id+")\"  type=\"button\" class=\"btn btn-primary m-2\" data-toggle=\"modal\" data-target=\"#ModalInfo\">" +
+            "Agregar al carrito" +
+            "</button>" +
           "</div>" +
         "</div>" +
 
@@ -64,4 +95,27 @@ function ProductListToHTML(ProductList) {
     
   let Str = ProductList.map(ProductToHTML);
   listaProductos.innerHTML = Str;
+}
+
+function fProducts(){
+  let xhr = new XMLHttpRequest();
+
+  xhr.open('GET', URL + "/api/products/" + document.getElementById("searchBar").value);
+  xhr.setRequestHeader('Content-Type','application/json');
+
+  xhr.send();
+
+  xhr.onload = function () {
+    if (xhr.status != 200) { 
+      
+      cuentaDisplay.innerHTML = "<img src=\"/ProyectoFinal/Frontend/Styles/angai313-spongebob-sad.gif\" alt=\"sdf\">"
+        
+    } else {
+
+      ProductListToHTML(JSON.parse(xhr.response));
+      console.log(JSON.parse(xhr.response))
+          
+    }
+    
+}
 }
