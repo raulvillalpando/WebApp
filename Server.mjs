@@ -19,6 +19,8 @@ App.use(cors({methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']}));
 
 App.use(express.json());
 
+App.use(express.static(__dirname));
+
 App.listen(Port, () =>{
     console.log("Proyecto final");
     console.log("API running on port " + Port);
