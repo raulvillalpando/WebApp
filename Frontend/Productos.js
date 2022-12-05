@@ -4,12 +4,15 @@ window.addEventListener("load", function() {
     }
 })
 
+// const URL = "http://localhost:3000";
+const URL = "https://anxious-shoe-toad.cyclic.app";
+
 function loadProducts(){
 
   console.log("Entre");
   let xhr = new XMLHttpRequest();
 
-  xhr.open('GET', "http://localhost:3000/api/products");
+  xhr.open('GET', URL + "/api/products");
   xhr.setRequestHeader('Content-Type','application/json');
 
   xhr.send();
