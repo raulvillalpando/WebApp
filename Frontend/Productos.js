@@ -36,7 +36,7 @@ function loadProducts(){
 function ProductToHTML(Product) {
     return "<div class=\"col-sm-6 col-md-4\" sstyle=\"min-height: 100px ;\">" +
     "<div class=\"thumbnail\" style=\"margin:10px;  border:1px solid #ddd;background-color:#fff;\">" +
-      "<h4 class=\"text-center\"><span class=\"label label-info\">" + Product.Categoria + "</span></h4>" +
+      "<h4 class=\"text-center\"><span class=\"label label-info\">" + Product.Categoría + "</span></h4>" +
       "<img src=\"" + Product.Imagen + "\" class=\"img-responsive\">" +
       "<div class=\"caption\">" +
         "<div class=\"row\">" +
